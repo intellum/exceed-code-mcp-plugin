@@ -1,0 +1,18 @@
+{
+  "name": "exceed-admin",
+  "version": "0.1.0",
+  "description": "Give Claude access to the Exceed admin API — search endpoints, inspect schemas, and execute API calls",
+  "userConfig": {
+    "exceed_domain": {
+      "description": "Your Exceed domain URL (e.g., https://mycompany.exceedlms.com)",
+      "sensitive": false
+    }
+  },
+  "mcpServers": {
+    "exceed-admin": {
+      "type": "http",
+      "urlTemplate": "https://exceed-code-mcp-production-ape37oyp2a-uc.a.run.app/mcp?exceed_domain={exceed_domain}"
+    }
+  },
+  "skills": "./skills/"
+}

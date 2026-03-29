@@ -1,0 +1,16 @@
+{
+  "name": "exceed-admin",
+  "description": "Exceed admin API plugin for Claude Code",
+  "owner": {
+    "name": "Intellum",
+    "url": "https://www.intellum.com"
+  },
+  "plugins": [
+    {
+      "name": "exceed-admin",
+      "source": "./",
+      "description": "Search and execute code against the Exceed admin API (~260 endpoints)",
+      "version": "0.1.0"
+    }
+  ]
+}
