@@ -5,7 +5,7 @@
   "userConfig": {
     "exceed_domain": {
       "title": "Exceed Domain",
-      "description": "Your Exceed domain URL (e.g., https://mycompany.exceedlms.com)",
+      "description": "Your Exceed domain URL (e.g., https://mycompany.exceedlms.com or https://intellum.exceedlms.com)",
       "type": "string",
       "sensitive": false
     }

@@ -12,7 +12,7 @@ Configure which Exceed instance to connect to.
 
 1. **Ask the user** for their Exceed domain URL. Examples:
    - `https://mycompany.exceedlms.com`
-   - `https://intellum.exceed.qa-env-36.dev.intellum.com`
+   - `https://intellum.exceedlms.com`
 
 2. **Validate the URL** — must start with `https://` (or `http://` for local dev).
 
