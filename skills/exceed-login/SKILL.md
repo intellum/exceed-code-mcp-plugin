@@ -18,7 +18,7 @@ Authenticate with your Exceed instance via OAuth.
 
 2. **Open the browser** for OAuth authorization:
    ```bash
-   open "DOMAIN/oauth2/authorize?client_id=exceed-code-mcp&redirect_uri=urn%3Aietf%3Awg%3Aoauth%3A2.0%3Aoob&response_type=code&scope=ai_agent+admin+super_admin"
+   open "DOMAIN/oauth2/authorize?client_id=exceed-code-mcp&redirect_uri=urn%3Aietf%3Awg%3Aoauth%3A2.0%3Aoob&response_type=code&scope=admin+super_admin"
    ```
    Replace DOMAIN with the actual domain from step 1.
 
