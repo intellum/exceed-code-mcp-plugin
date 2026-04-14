@@ -1,6 +1,6 @@
 {
   "name": "exceed-admin",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Give Claude access to the Exceed admin API — search endpoints, inspect schemas, and execute API calls",
   "userConfig": {
     "exceed_domain": {

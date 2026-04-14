@@ -14,7 +14,11 @@ Authenticate with your Exceed instance via OAuth.
    ```bash
    echo "${CLAUDE_PLUGIN_OPTION_exceed_domain:-}"
    ```
-   If empty, ask the user: "What is your Exceed domain URL? (e.g., https://mycompany.exceedlms.com)"
+   If empty, try reading it from the user's Claude settings:
+   ```bash
+   python3 -c "import json,sys;print(json.load(open('$HOME/.claude/settings.json')).get('pluginConfigs',{}).get('exceed-admin@exceed-admin',{}).get('options',{}).get('exceed_domain',''))"
+   ```
+   If still empty, ask the user: "What is your Exceed domain URL? (e.g., https://mycompany.exceedlms.com)"
 
 2. **Open the browser** for OAuth authorization:
    ```bash
@@ -38,13 +42,14 @@ Authenticate with your Exceed instance via OAuth.
 
 6. If the exchange **fails**, tell the user the error and suggest running `/exceed-login` again (codes are single-use).
 
-7. If **successful**, save the auth. Run:
+7. If **successful**, save the auth to the plugin data directory. The canonical location is `$HOME/.claude/plugins/data/exceed-admin-exceed-admin/`, which persists across sessions and plugin updates. Use `${CLAUDE_PLUGIN_DATA}` when available and fall back to the canonical path otherwise:
    ```bash
-   mkdir -p "${CLAUDE_PLUGIN_DATA:-.}"
-   cat > "${CLAUDE_PLUGIN_DATA:-.}/auth.json" << 'EOF'
+   PLUGIN_DATA="${CLAUDE_PLUGIN_DATA:-$HOME/.claude/plugins/data/exceed-admin-exceed-admin}"
+   mkdir -p "$PLUGIN_DATA"
+   cat > "$PLUGIN_DATA/auth.json" << 'EOF'
    {"accessToken":"ACCESS_TOKEN","refreshToken":"REFRESH_TOKEN","domain":"DOMAIN","expiresIn":EXPIRES_IN}
    EOF
    ```
    Replace the placeholder values with the actual token data.
 
-8. Tell the user: "Logged in to DOMAIN. Token valid for N hours. Restart Claude Code to start using the Exceed admin API tools."
+8. Tell the user: "Logged in to DOMAIN. Token valid for N hours. Paste this access token into the plugin config as `exceed_token` (run `/plugin` → configure exceed-admin), then run `/reload-plugins` so the Exceed admin MCP tools become available: ACCESS_TOKEN"
