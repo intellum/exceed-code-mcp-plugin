@@ -4,11 +4,14 @@ Give Claude access to the Exceed admin API through two code-mode MCP tools: **se
 
 ## Install
 
-```
-/plugin add github:intellum/exceed-code-mcp-plugin
-```
+1. **Add the marketplace:**
+   ```
+   /plugin marketplace add intellum/exceed-code-mcp-plugin
+   ```
 
-Claude Code will ask for your **Exceed domain URL** (e.g., `https://mycompany.exceedlms.com`).
+2. **Install the plugin:** run `/plugin`, then select `exceed-admin` from the `exceed-code-mcp-plugin` marketplace and install it.
+
+3. **Configure your domain:** in the `/plugin` menu, open `exceed-admin` → Configure, and set `exceed_domain` to your Exceed URL (e.g., `https://mycompany.exceedlms.com`).
 
 ## Login
 
@@ -16,11 +19,16 @@ Claude Code will ask for your **Exceed domain URL** (e.g., `https://mycompany.ex
 /exceed-login
 ```
 
-Opens your browser to Exceed's OAuth authorization page. Log in, authorize, copy the code, paste it back. Token is saved for the session.
+Opens your browser to Exceed's OAuth authorization page. Log in, authorize, copy the code, paste it back. The skill will print an access token.
+
+Paste that token into the plugin config:
+
+- Run `/plugin` → `exceed-admin` → Configure → set `exceed_token`
+- Run `/reload-plugins` (or restart Claude Code) so the MCP server picks it up.
 
 ## Use
 
-After login, restart Claude Code. You'll have two tools:
+Once the token is configured, you'll have two tools:
 
 ### search
 Query the Exceed admin API specification (~260 endpoints):
@@ -45,8 +53,7 @@ Make authenticated API calls:
 
 | Command | Description |
 |---------|-------------|
-| `/exceed-login` | Authenticate with your Exceed instance |
-| `/exceed-setup` | Configure which Exceed instance to connect to |
+| `/exceed-login` | Authenticate with your Exceed instance (prints a token to paste into plugin config) |
 
 ## Requirements
 
