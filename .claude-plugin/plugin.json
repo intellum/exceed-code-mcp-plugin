@@ -1,6 +1,6 @@
 {
   "name": "exceed-admin",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "Give Claude access to the Exceed admin API — search endpoints, inspect schemas, and execute API calls",
   "userConfig": {
     "exceed_domain": {
@@ -8,12 +8,21 @@
       "description": "Your Exceed domain URL (e.g., https://mycompany.exceedlms.com or https://intellum.exceedlms.com)",
       "type": "string",
       "sensitive": false
+    },
+    "exceed_token": {
+      "title": "Exceed OAuth Access Token",
+      "description": "OAuth access token for the Exceed admin API. Get one by running the /exceed-admin:exceed-login skill, then paste the value here.",
+      "type": "string",
+      "sensitive": true
     }
   },
   "mcpServers": {
     "exceed-admin": {
       "type": "http",
-      "url": "https://exceed-code-mcp-production-ape37oyp2a-uc.a.run.app/mcp?exceed_domain=${user_config.exceed_domain}"
+      "url": "https://exceed-code-mcp-production-ape37oyp2a-uc.a.run.app/mcp?exceed_domain=${user_config.exceed_domain}",
+      "headers": {
+        "Authorization": "Bearer ${user_config.exceed_token}"
+      }
     }
   },
   "skills": "./skills/"
